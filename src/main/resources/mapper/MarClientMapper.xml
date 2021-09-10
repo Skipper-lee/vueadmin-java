@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.markerhub.mapper.mar.MarClientMapper">
+
+    <select id="getListClientByPage" resultMap="ClientUser">
+        select * from mar_client
+    </select>
+    <resultMap id="ClientUser" type="com.markerhub.entity.mar.MarClient">
+        <result property="id" column="id"></result>
+        <result property="name" column="name"></result>
+        <result property="gender" column="gender"></result>
+        <result property="company" column="company"></result>
+        <result property="area" column="area"></result>
+        <result property="statu" column="statu"></result>
+        <result property="created" column="created"></result>
+        <result property="allocationDate" column="allocationDate"></result>
+        <result property="address" column="address"></result>
+        <result property="updated" column="updated"></result>
+        <association property="sysUser" column="uid" javaType="com.markerhub.entity.sys.SysUser" select="getSysUserById"/>
+    </resultMap>
+    <select id="getSysUserById" resultType="com.markerhub.entity.sys.SysUser">
+        select * from sys_user
+    </select>
+</mapper>
